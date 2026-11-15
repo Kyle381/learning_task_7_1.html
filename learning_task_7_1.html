@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Task 7.1 - Canvas Art</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+h1 { color: #243447; }
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 25px auto;
+}
+.art {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+canvas {
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+    border: 1px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Learning Task 7.1</h1>
+<p>Eight Graphical Arts Using HTML5 Canvas</p>
+
+<div class="gallery">
+<div class="art"><canvas id="house" width="200" height="200"></canvas><p>1. House</p></div>
+<div class="art"><canvas id="sun" width="200" height="200"></canvas><p>2. Sun</p></div>
+<div class="art"><canvas id="tree" width="200" height="200"></canvas><p>3. Tree</p></div>
+<div class="art"><canvas id="car" width="200" height="200"></canvas><p>4. Car</p></div>
+<div class="art"><canvas id="flower" width="200" height="200"></canvas><p>5. Flower</p></div>
+<div class="art"><canvas id="cup" width="200" height="200"></canvas><p>6. Cup</p></div>
+<div class="art"><canvas id="clock" width="200" height="200"></canvas><p>7. Clock</p></div>
+<div class="art"><canvas id="cloud" width="200" height="200"></canvas><p>8. Cloud</p></div>
+</div>
+
+<script>
+function ctx(id) {
+    return document.getElementById(id).getContext("2d");
+}
+
+// 1. House
+{
+    let c = ctx("house");
+    c.fillStyle = "#f4c542";
+    c.fillRect(45, 85, 110, 85);
+    c.fillStyle = "#c0392b";
+    c.beginPath();
+    c.moveTo(30, 90);
+    c.lineTo(100, 30);
+    c.lineTo(170, 90);
+    c.fill();
+    c.fillStyle = "#795548";
+    c.fillRect(85, 120, 30, 50);
+    c.fillStyle = "#87ceeb";
+    c.fillRect(52, 100, 25, 25);
+    c.fillRect(123, 100, 25, 25);
+}
+
+// 2. Sun
+{
+    let c = ctx("sun");
+    c.strokeStyle = "#f39c12";
+    c.lineWidth = 7;
+    for (let i = 0; i < 8; i++) {
+        let a = i * Math.PI / 4;
+        c.beginPath();
+        c.moveTo(100 + Math.cos(a)*55, 100 + Math.sin(a)*55);
+        c.lineTo(100 + Math.cos(a)*75, 100 + Math.sin(a)*75);
+        c.stroke();
+    }
+    c.fillStyle = "#ffcc33";
+    c.beginPath();
+    c.arc(100, 100, 48, 0, Math.PI*2);
+    c.fill();
+    c.fillStyle = "#333";
+    c.beginPath();
+    c.arc(85, 90, 4, 0, Math.PI*2);
+    c.arc(115, 90, 4, 0, Math.PI*2);
+    c.fill();
+    c.strokeStyle = "#333";
+    c.lineWidth = 3;
+    c.beginPath();
+    c.arc(100, 100, 20, 0.2, Math.PI-0.2);
+    c.stroke();
+}
+
+// 3. Tree
+{
+    let c = ctx("tree");
+    c.fillStyle = "#795548";
+    c.fillRect(85, 110, 30, 65);
+    c.fillStyle = "#2e8b57";
+    c.beginPath();
+    c.arc(100, 75, 48, 0, Math.PI*2);
+    c.fill();
+    c.fillStyle = "#3cb371";
+    c.beginPath();
+    c.arc(65, 100, 30, 0, Math.PI*2);
+    c.arc(135, 100, 30, 0, Math.PI*2);
+    c.fill();
+}
+
+// 4. Car
+{
+    let c = ctx("car");
+    c.fillStyle = "#e74c3c";
+    c.fillRect(30, 95, 140, 45);
+    c.beginPath();
+    c.moveTo(55, 95);
+    c.lineTo(80, 60);
+    c.lineTo(130, 60);
+    c.lineTo(155, 95);
+    c.fill();
+    c.fillStyle = "#87ceeb";
+    c.fillRect(85, 68, 38, 25);
+    c.fillStyle = "#222";
+    c.beginPath();
+    c.arc(60, 145, 17, 0, Math.PI*2);
+    c.arc(140, 145, 17, 0, Math.PI*2);
+    c.fill();
+    c.fillStyle = "#ddd";
+    c.beginPath();
+    c.arc(60, 145, 7, 0, Math.PI*2);
+    c.arc(140, 145, 7, 0, Math.PI*2);
+    c.fill();
+}
+
+// 5. Flower
+{
+    let c = ctx("flower");
+    c.strokeStyle = "#278b45";
+    c.lineWidth = 8;
+    c.beginPath();
+    c.moveTo(100, 95);
+    c.lineTo(100, 180);
+    c.stroke();
+    c.fillStyle = "#38a85b";
+    c.beginPath();
+    c.ellipse(80, 145, 20, 9, -0.5, 0, Math.PI*2);
+    c.ellipse(120, 160, 20, 9, 0.5, 0, Math.PI*2);
+    c.fill();
+    c.fillStyle = "#ff75a0";
+    for (let i = 0; i < 6; i++) {
+        let a = i * Math.PI / 3;
+        c.beginPath();
+        c.arc(100 + Math.cos(a)*27, 75 + Math.sin(a)*27, 19, 0, Math.PI*2);
+        c.fill();
+    }
+    c.fillStyle = "#ffcc33";
+    c.beginPath();
+    c.arc(100, 75, 19, 0, Math.PI*2);
+    c.fill();
+}
+
+// 6. Cup
+{
+    let c = ctx("cup");
+    c.fillStyle = "#8b4513";
+    c.fillRect(55, 65, 90, 100);
+    c.fillStyle = "#d2691e";
+    c.fillRect(50, 60, 100, 15);
+    c.strokeStyle = "#8b4513";
+    c.lineWidth = 10;
+    c.beginPath();
+    c.arc(150, 110, 28, -Math.PI/2, Math.PI/2);
+    c.stroke();
+    c.fillStyle = "#f5deb3";
+    c.fillRect(65, 85, 70, 65);
+}
+
+// 7. Clock
+{
+    let c = ctx("clock");
+    c.fillStyle = "#fff";
+    c.strokeStyle = "#34495e";
+    c.lineWidth = 8;
+    c.beginPath();
+    c.arc(100, 100, 70, 0, Math.PI*2);
+    c.fill();
+    c.stroke();
+    c.fillStyle = "#34495e";
+    for (let i = 0; i < 12; i++) {
+        let a = i * Math.PI / 6;
+        c.beginPath();
+        c.arc(100 + Math.cos(a)*55, 100 + Math.sin(a)*55, 3, 0, Math.PI*2);
+        c.fill();
+    }
+    c.strokeStyle = "#e74c3c";
+    c.lineWidth = 5;
+    c.beginPath();
+    c.moveTo(100, 100);
+    c.lineTo(100, 55);
+    c.moveTo(100, 100);
+    c.lineTo(135, 100);
+    c.stroke();
+}
+
+// 8. Cloud
+{
+    let c = ctx("cloud");
+    c.fillStyle = "#87ceeb";
+    c.beginPath();
+    c.arc(70, 105, 30, 0, Math.PI*2);
+    c.arc(105, 80, 40, 0, Math.PI*2);
+    c.arc(140, 105, 30, 0, Math.PI*2);
+    c.fill();
+    c.fillRect(65, 100, 105, 35);
+    c.strokeStyle = "#3498db";
+    c.lineWidth = 5;
+    for (let x of [75, 110, 145]) {
+        c.beginPath();
+        c.moveTo(x, 150);
+        c.lineTo(x-10, 170);
+        c.stroke();
+    }
+}
+</script>
+
+</body>
+</html>
